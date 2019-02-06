@@ -1,37 +1,15 @@
-import getComponentOptionsOrder from '../modules/VueStyleGuide_C';
+import getScript from './getScript';
+import getComponentProperties from './getComponentProperties';
+import getComponentName from './getComponentName';
+import getComponentPropNames from './getComponentPropNames';
+import pipe from './pipe';
+import getComponentOptionsOrder from '../styleModules/VueStyleGuide_C';
 
 const fsProm = require('fs').promises;
-const { parse, first } = require('abstract-syntax-tree');
+const { parse } = require('abstract-syntax-tree');
 
-function getScript(str) {
-  return str.split(/<\/?script>/)[1].replace(/[\s\S]+(?=export)/, '').trim();
-}
 
-function getComponentProperties(tree) {
-  return first(tree, 'ObjectExpression').properties;
-}
 
-function getComponentName(arr) {
-  const name = arr.find(prop => prop.key.name === 'name').value.value;
-  return {
-    componentName: name,
-    componentProps: arr,
-  };
-}
-
-function getComponentPropNames(obj) {
-  const propNames = obj.componentProps.map(propName => propName.key.name);
-  return {
-    componentName: obj.componentName,
-    componentProps: propNames,
-  };
-}
-
-function pipe(...fns) {
-  return function inner(start) {
-    return fns.reduce((val, fn) => fn(val), start);
-  };
-}
 
 async function lintFile(file) {
   try {
@@ -81,6 +59,5 @@ async function vueStyleLint(arg) {
     console.log(err.message);
   }
 }
-// eslint-disable-next-line
-export { vueStyleLint };
-// export default vueStyleLint;
+
+export default vueStyleLint;

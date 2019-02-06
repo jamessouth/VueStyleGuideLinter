@@ -1,3 +1,3 @@
-const vSL = require('./js/index');
+const vSL = require('./js/index').default;
 
-vSL.vueStyleLint(process.argv[2]);
+vSL(process.argv[2]);

@@ -4,7 +4,8 @@
   "main": "./js/index.js",
   "module": "./js/main.js",
   "scripts": {
-    "lint": "eslint ./vueStyleGuideLinter.js ./js ./modules"
+    "lint": "eslint ./vueStyleGuideLinter.js ./js ./modules",
+    "style": "node --no-warnings ./vueStyleGuideLinter.js"
   },
   "author": "james south",
   "license": "MIT",
