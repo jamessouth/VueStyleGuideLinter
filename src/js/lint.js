@@ -1,6 +1,6 @@
-import pipe from './pipe';
+import pipe from './util/pipe';
 import lintFile from './lintFile';
-import isFilePath from './isFilePath';
+import isFilePath from './util/isFilePath';
 
 const fsProm = require('fs').promises;
 

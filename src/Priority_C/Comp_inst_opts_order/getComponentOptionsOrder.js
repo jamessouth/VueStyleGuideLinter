@@ -3,6 +3,7 @@ import prettifyArray from './prettifyArray';
 import COMP_INST_OPTS_ORDER from './COMP_INST_OPTS_ORDER';
 
 export default function getComponentOptionsOrder(obj = { componentName: '', componentProps: [] }) {
+  console.log(obj);
   const optArray = [...obj.componentProps];
   for (let i = 0; i < COMP_INST_OPTS_ORDER.length; i += 1) {
     if (COMP_INST_OPTS_ORDER[i] === optArray[0]) optArray.shift();

@@ -1,5 +1,5 @@
 import lint from './lint';
-import resultReporter from './resultReporter';
+import resultReporter from './util/resultReporter';
 
 export default async function vueStyleLint(arg) {
   let result = null;
