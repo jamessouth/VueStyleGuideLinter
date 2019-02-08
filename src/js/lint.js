@@ -1,6 +1,7 @@
 import pipe from './util/pipe';
-import lintFile from './lintFile';
+import errorHandler from './util/errorHandler';
 import isFilePath from './util/isFilePath';
+import lintFile from './lintFile';
 
 const fsProm = require('fs').promises;
 
@@ -14,10 +15,6 @@ export default async function lint(arg) {
     const myDir = await fsProm.readdir(arg);
     return Promise.all(myDir.map(pipe(buildFullPath, lintFile)));
   } catch (err) {
-    if (/ENOENT/.test(err.message)) {
-      console.log('File or directory not found.  Please supply a valid path.');
-    } else {
-      console.log(err.message);
-    }
+    return errorHandler(err.message, 'directory');
   }
 }
