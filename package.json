@@ -5,7 +5,8 @@
   "module": "./src/js/main.js",
   "scripts": {
     "lint": "eslint ./vueStyleGuideLinter.js ./src",
-    "style": "node --no-warnings ./vueStyleGuideLinter.js"
+    "style": "node --no-warnings ./vueStyleGuideLinter.js",
+    "test": "nyc ava \"src/**/*.test.js\" --verbose"
   },
   "author": "james south",
   "license": "MIT",
@@ -14,8 +15,10 @@
     "esm": "^3.2.0"
   },
   "devDependencies": {
+    "ava": "^1.2.1",
     "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0"
+    "eslint-plugin-import": "^2.16.0",
+    "nyc": "^13.2.0"
   }
 }
