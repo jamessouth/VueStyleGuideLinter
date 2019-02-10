@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint ./vueStyleGuideLinter.js ./src",
     "style": "node --no-warnings ./vueStyleGuideLinter.js",
-    "test": "nyc --reporter=lcov ava \"src/**/*.test.js\" --verbose"
+    "test": "nyc --reporter=lcov ava \"src/**/*.test.js\" --verbose && nyc report"
   },
   "author": "james south",
   "license": "MIT",
