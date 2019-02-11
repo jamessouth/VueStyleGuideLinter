@@ -1,10 +1,10 @@
 import test from 'ava';
+import sinon from 'sinon';
 import errorHandler from './errorHandler';
 import getComponentName from './getComponentName';
 import getComponentPropNames from './getComponentPropNames';
 import getScript from './getScript';
 import isFilePath from './isFilePath';
-import pipe from './pipe';
 import removeBuggyKeywords from './removeBuggyKeywords';
 import resultReporter from './resultReporter';
 
@@ -89,7 +89,7 @@ test('test getScript', t => {
 });
 
 test('test isFilePath - true', async t => {
-  const file = './sample.js';
+  const file = './package.json';
   const bool = await isFilePath(file);
   t.true(bool);
 });
@@ -100,19 +100,65 @@ test('test isFilePath - false', async t => {
   t.false(bool);
 });
 
-test('test isFilePath - error', async t => {
-  const file = new Array();
-  // const bool = await isFilePath(file);
-  await t.throwsAsync(isFilePath(file));
+test('test isFilePath - ENOENT error', async t => {
+  const file = './sample.js';
+  const bool = await isFilePath(file);
+  t.true(bool);
 });
 
+test('test isFilePath - other error - return undefined', async t => {
+  const file = new Array();
+  const bool = await isFilePath(file);
+  t.is(bool, undefined);
+});
 
+test('test isFilePath - other error - should not throw', async t => {
+  const file = new Array();
+  await t.notThrowsAsync(isFilePath(file));
+});
 
-
-
-
+// pipe is a common FP utility so not testing here
 
 test('test removeBuggyKeywords', t => {
   const str = 'helloawaitasyncimport world';
   t.is(removeBuggyKeywords(str), 'hello world');
+});
+
+function setupSpy() {
+  sinon.spy(console, 'log');
+}
+
+function tearDownSpy() {
+  console.log.restore();
+}
+
+test('test resultReporter - no arg - log newline', t => {
+  setupSpy();
+  resultReporter();
+  t.true(console.log.calledOnceWith('\n'));
+  tearDownSpy();
+});
+
+test('test resultReporter - str arg - log newline + str', t => {
+  setupSpy();
+  resultReporter('hello');
+  t.true(console.log.calledOnceWith(`\nhello`));
+  tearDownSpy();
+});
+
+test('test resultReporter - arr arg - console.log called arr.length + 1(newline) times', t => {
+  setupSpy();
+  const arr = ['once\n', 'there\n', 'was\n'];
+  resultReporter(arr);
+  t.true(console.log.callCount === arr.length + 1);
+  tearDownSpy();
+});
+
+test('test resultReporter - arr arg - log newline + each element', t => {
+  setupSpy();
+  const arr = ['once\n', 'there\n', 'was\n'];
+  resultReporter(arr);
+  t.true(console.log.calledWith('\n'));
+  arr.forEach(i => t.true(console.log.calledWith(i)));
+  tearDownSpy();
 });
