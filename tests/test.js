@@ -1,12 +1,39 @@
 import test from 'ava';
 import sinon from 'sinon';
-import errorHandler from './errorHandler';
-import getComponentName from './getComponentName';
-import getComponentPropNames from './getComponentPropNames';
-import getScript from './getScript';
-import isFilePath from './isFilePath';
-import removeBuggyKeywords from './removeBuggyKeywords';
-import resultReporter from './resultReporter';
+import vueStyleGuideLinter from '../vueStyleGuideLinter';
+import getComponentOptionsOrder from '../src/Priority_C/Comp_inst_opts_order/getComponentOptionsOrder';
+import errorHandler from '../src/js/util/errorHandler';
+import getComponentName from '../src/js/util/getComponentName';
+import getComponentPropNames from '../src/js/util/getComponentPropNames';
+import getScript from '../src/js/util/getScript';
+import isFilePath from '../src/js/util/isFilePath';
+import removeBuggyKeywords from '../src/js/util/removeBuggyKeywords';
+import resultReporter from '../src/js/util/resultReporter';
+
+function setupSpy() {
+  sinon.spy(console, 'log');
+}
+
+function tearDownSpy() {
+  console.log.restore();
+}
+
+test('test getComponentOptionsOrder - no name and empty props', t => {
+  const obj = { componentName: '', componentProps: [] };
+  t.is(getComponentOptionsOrder(obj), "\x1b[1m\x1b[32mThe \x1b[4m\x1b[0m\x1b[1m\x1b[32m component's options are already in the recommended order.\x1b[0m\n");
+});
+
+test('test getComponentOptionsOrder - name with props in order', t => {
+  const obj = { componentName: 'header', componentProps: ['name', 'props'] };
+  t.is(getComponentOptionsOrder(obj), "\x1b[1m\x1b[32mThe \x1b[4mheader\x1b[0m\x1b[1m\x1b[32m component's options are already in the recommended order.\x1b[0m\n");
+});
+
+test('test getComponentOptionsOrder - name with props in wrong order', t => {
+  const obj = { componentName: 'header', componentProps: ['methods', 'name', 'props'] };
+  t.is(getComponentOptionsOrder(obj), "\x1b[1m\x1b[31mThe recommended order for the \x1b[4mheader\x1b[0m\x1b[1m\x1b[31m component's options is: \x1b[7mname, props, methods.\x1b[0m\n");
+});
+
+// getProperOrder and prettifyArray seem adequately tested via getComponentOptionsOrder despite what nyc says
 
 test('test errorHandler - proper return on ENOENT', t => {
   const str = 'ENOENT';
@@ -123,14 +150,6 @@ test('test removeBuggyKeywords', t => {
   const str = 'helloawaitasyncimport world';
   t.is(removeBuggyKeywords(str), 'hello world');
 });
-
-function setupSpy() {
-  sinon.spy(console, 'log');
-}
-
-function tearDownSpy() {
-  console.log.restore();
-}
 
 test('test resultReporter - no arg - log newline', t => {
   setupSpy();

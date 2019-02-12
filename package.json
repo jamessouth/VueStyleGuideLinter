@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint ./vueStyleGuideLinter.js ./src",
     "style": "node --no-warnings ./vueStyleGuideLinter.js",
-    "test": "nyc --reporter=lcov ava \"src/**/*.test.js\" --verbose && nyc report"
+    "test": "nyc --reporter=lcov ava \"tests/test.js\" --verbose && nyc report"
   },
   "author": "james south",
   "license": "MIT",
@@ -24,5 +24,8 @@
   },
   "ava": {
     "require": "esm"
+  },
+  "nyc": {
+    "exclude": ["coverage/**", "tests/**", "src/**/pipe.js", "src/**/getComponentProperties.js", "**/node_modules/**"]
   }
 }
