@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint ./vueStyleGuideLinter.js ./src",
     "style": "node --no-warnings ./vueStyleGuideLinter.js",
-    "test": "nyc ava \"src/**/*.test.js\" --verbose"
+    "test": "nyc --reporter=lcov ava \"tests/test.js\" --verbose && nyc report"
   },
   "author": "james south",
   "license": "MIT",
@@ -19,6 +19,13 @@
     "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "nyc": "^13.2.0"
+    "nyc": "^13.2.0",
+    "sinon": "^7.2.3"
+  },
+  "ava": {
+    "require": "esm"
+  },
+  "nyc": {
+    "exclude": ["coverage/**", "tests/**", "src/**/pipe.js", "src/**/getComponentProperties.js", "**/node_modules/**"]
   }
 }
