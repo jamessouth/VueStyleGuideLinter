@@ -1,7 +1,7 @@
 import resultReporter from './util/resultReporter';
 import lint from './lint';
 
-export default async function vueStyleLint(arg) {
+export default async function main(arg) {
   let result = null;
   try {
     if (!arg) throw new Error('A path is required.  It can be a file or a directory.');

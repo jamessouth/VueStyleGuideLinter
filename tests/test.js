@@ -1,6 +1,6 @@
 import test from 'ava';
 import sinon from 'sinon';
-import vueStyleGuideLinter from '../vueStyleGuideLinter';
+import VueStyleGuideLinter from '../VueStyleGuideLinter';
 import getComponentOptionsOrder from '../src/Priority_C/Comp_inst_opts_order/getComponentOptionsOrder';
 import errorHandler from '../src/js/util/errorHandler';
 import getComponentName from '../src/js/util/getComponentName';
