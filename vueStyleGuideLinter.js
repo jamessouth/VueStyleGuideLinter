@@ -1,3 +1,3 @@
-const vSL = require('./src/js/index').default;
+const VSL = require('./src/js/index').default;
 
-vSL(process.argv[2]);
+VSL(process.argv[2]);

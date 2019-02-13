@@ -1,15 +1,30 @@
 {
-  "name": "VueStyleGuideLinter",
+  "name": "vue-style-guide-linter",
   "version": "1.0.0",
-  "main": "./src/js/index.js",
+  "description": "A Vue SFC style linter using the Vue Style Guide",
   "module": "./src/js/main.js",
   "scripts": {
-    "lint": "eslint ./vueStyleGuideLinter.js ./src",
-    "style": "node --no-warnings ./vueStyleGuideLinter.js",
+    "lint": "eslint ./VueStyleGuideLinter.js ./src",
+    "start": "node --no-warnings ./VueStyleGuideLinter.js",
     "test": "nyc --reporter=lcov ava \"tests/test.js\" --verbose && nyc report"
   },
-  "author": "james south",
+  "keywords": ["vue", "style", "guide", "lint", "linter", "sfc", "vue-cli"],
+  "contributors": [
+    {
+      "name": "James South",
+      "website": "https://jamessouth.github.io/Project-12/"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamessouth/VueStyleGuideLinter.git"
+  },
+  "author": "James South <jamesdanielsouth@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jamessouth/VueStyleGuideLinter/issues"
+  },
+  "homepage": "https://github.com/jamessouth/VueStyleGuideLinter#readme",
   "dependencies": {
     "abstract-syntax-tree": "^2.1.0",
     "esm": "^3.2.0"
