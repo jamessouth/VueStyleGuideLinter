@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "A Vue SFC style linter using the Vue Style Guide",
   "module": "./src/js/main.js",
+  "bin": "./bin/vue-style-guide-linter",
   "scripts": {
-    "lint": "eslint ./vue-style-guide-linter.js ./src ./test",
-    "runme": "node --no-warnings ./vue-style-guide-linter.js",
+    "lint": "eslint ./bin ./src ./test",
+    "runme": "node ./bin/vue-style-guide-linter.js",
     "test": "nyc --reporter=lcov ava \"test/test.js\" --verbose && nyc report"
   },
   "engines": {
@@ -28,7 +29,7 @@
   ],
   "files": [
     "src",
-    "vue-style-guide-linter.js"
+    "bin"
   ],
   "repository": {
     "type": "git",
