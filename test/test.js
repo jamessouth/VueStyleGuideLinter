@@ -2,7 +2,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 // eslint-disable-next-line
-import index from '../index';
+import cli from '../cli';
 import getComponentOptionsOrder from '../src/Priority_C/Comp_inst_opts_order/getComponentOptionsOrder';
 import errorHandler from '../src/js/util/errorHandler';
 import getComponentName from '../src/js/util/getComponentName';

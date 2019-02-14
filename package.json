@@ -2,14 +2,14 @@
   "name": "vue-style-lint",
   "version": "1.0.0",
   "description": "A Vue SFC style linter using the Vue Style Guide",
-  "main": "index.js",
+  "main": "./src/js/index.js",
   "module": "./src/js/main.js",
   "bin": {
-    "vsl": "./index"
+    "vsl": "./cli"
   },
   "scripts": {
-    "lint": "eslint ./index.js ./src ./test",
-    "runme": "node ./index.js",
+    "lint": "eslint ./cli.js ./src ./test",
+    "runme": "node ./cli.js",
     "test": "nyc --reporter=lcov ava \"test/test.js\" --verbose && nyc report"
   },
   "engines": {
@@ -31,7 +31,7 @@
     }
   ],
   "files": [
-    "index.js",
+    "cli.js",
     "yarn.lock",
     "src",
     "bin"
