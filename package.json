@@ -5,11 +5,11 @@
   "module": "./src/js/main.js",
   "scripts": {
     "lint": "eslint ./vue-style-guide-linter.js ./src ./test",
-    "start": "node --no-warnings ./vue-style-guide-linter.js",
+    "runme": "node --no-warnings ./vue-style-guide-linter.js",
     "test": "nyc --reporter=lcov ava \"test/test.js\" --verbose && nyc report"
   },
   "engines": {
-		"node": ">=10"
+		"node": ">=10.0.0"
 	},
   "keywords": [
     "vue",
@@ -26,16 +26,17 @@
       "website": "https://jamessouth.github.io/Project-12/"
     }
   ],
-  "files": [],
+  "files": [
+    "src",
+    "vue-style-guide-linter.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jamessouth/vue-style-guide-linter.git"
   },
   "author": "James South <jamesdanielsouth@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jamessouth/vue-style-guide-linter/issues"
-  },
+  "bugs": "https://github.com/jamessouth/vue-style-guide-linter/issues",
   "homepage": "https://github.com/jamessouth/vue-style-guide-linter#readme",
   "dependencies": {
     "abstract-syntax-tree": "^2.1.0",
