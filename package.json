@@ -5,7 +5,7 @@
   "main": "./src/js/index.js",
   "module": "./src/js/main.js",
   "bin": {
-    "vsl": "./cli"
+    "vsl": "./cli.js"
   },
   "scripts": {
     "lint": "eslint ./cli.js ./src ./test",
@@ -13,8 +13,8 @@
     "test": "nyc --reporter=lcov ava \"test/test.js\" --verbose && nyc report"
   },
   "engines": {
-		"node": ">=10.0.0"
-	},
+    "node": ">=10.0.0"
+  },
   "keywords": [
     "vue",
     "style",
@@ -32,9 +32,8 @@
   ],
   "files": [
     "cli.js",
-    "yarn.lock",
-    "src",
-    "bin"
+    "package-lock.json",
+    "src"
   ],
   "repository": {
     "type": "git",
@@ -54,7 +53,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-ava": "^5.1.1",
     "eslint-plugin-import": "^2.16.0",
-    "nyc": "^13.2.0",
+    "nyc": "^13.3.0",
     "sinon": "^7.2.3"
   },
   "ava": {
