@@ -9,11 +9,10 @@
   },
   "scripts": {
     "lint": "eslint ./cli.js ./src ./test",
-    "runme": "node ./cli.js",
     "test": "nyc --reporter=lcov ava \"test/test.js\" --verbose && nyc report"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=8.0.0"
   },
   "keywords": [
     "vue",
@@ -32,23 +31,24 @@
   ],
   "files": [
     "cli.js",
+    "npm-shrinkwrap.json",
     "src"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jamessouth/vue-style-guide-linter.git"
+    "url": "git+https://github.com/jamessouth/vue-style-lint.git"
   },
   "author": "James South <jamesdanielsouth@gmail.com>",
   "license": "MIT",
-  "bugs": "https://github.com/jamessouth/vue-style-guide-linter/issues",
-  "homepage": "https://github.com/jamessouth/vue-style-guide-linter#readme",
+  "bugs": "https://github.com/jamessouth/vue-style-lint/issues",
+  "homepage": "https://github.com/jamessouth/vue-style-lint#readme",
   "dependencies": {
-    "abstract-syntax-tree": "^2.1.0",
-    "esm": "^3.2.0"
+    "abstract-syntax-tree": "^2.1.1",
+    "esm": "^3.2.4"
   },
   "devDependencies": {
     "ava": "^1.2.1",
-    "eslint": "^5.13.0",
+    "eslint": "^5.14.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-ava": "^5.1.1",
     "eslint-plugin-import": "^2.16.0",
