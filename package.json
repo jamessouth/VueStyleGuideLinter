@@ -44,7 +44,7 @@
   "homepage": "https://github.com/jamessouth/vue-style-lint#readme",
   "dependencies": {
     "abstract-syntax-tree": "^2.1.1",
-    "esm": "^3.2.4"
+    "esm": "^3.2.5"
   },
   "devDependencies": {
     "ava": "^1.2.1",
