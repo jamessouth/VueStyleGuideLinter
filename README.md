@@ -49,7 +49,10 @@ You would then run:
 
 ## Output
 
-A message for each file saying that the component's options are already in order or, if not, giving the recommended order.
+A message logged to the console:
+* the component's options are already in order, or
+* if not in order, the recommended order, or
+* an error message
 
 ## Author/Maintainer
 
