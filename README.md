@@ -3,6 +3,7 @@
 </div>
 
 [![Build Status](https://travis-ci.com/jamessouth/vue-style-lint.svg?branch=master)](https://travis-ci.com/jamessouth/vue-style-lint)
+[![Coverage Status](https://coveralls.io/repos/github/jamessouth/vue-style-lint/badge.svg?branch=master)](https://coveralls.io/github/jamessouth/vue-style-lint?branch=master)
 
 # vue-style-lint
 
