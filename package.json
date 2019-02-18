@@ -1,7 +1,7 @@
 {
   "name": "vue-style-lint",
   "version": "1.0.0",
-  "description": "A Vue SFC style linter using the Vue Style Guide",
+  "description": "A Vue single-file component cli style-linter using the Vue Style Guide",
   "main": "./src/js/index.js",
   "module": "./src/js/main.js",
   "bin": {
@@ -21,6 +21,7 @@
     "lint",
     "linter",
     "sfc",
+    "cli",
     "vue-cli"
   ],
   "contributors": [

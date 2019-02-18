@@ -2,15 +2,15 @@
 import test from 'ava';
 import sinon from 'sinon';
 // eslint-disable-next-line
-// import cli from '../cli';
+import cli from '../cli';
 // eslint-disable-next-line
+import index from '../src/js/index';
 import main from '../src/js/main';
 import lint from '../src/js/lint';
-// const fake_in_order = require('./mock_files/fake_in_order');
-
-
-
+import lintFile from '../src/js/lintFile';
 import getComponentOptionsOrder from '../src/Priority_C/Comp_inst_opts_order/getComponentOptionsOrder';
+import prettifyArray from '../src/Priority_C/Comp_inst_opts_order/prettifyArray';
+import getProperOrder from '../src/Priority_C/Comp_inst_opts_order/getProperOrder';
 import errorHandler from '../src/js/util/errorHandler';
 import getComponentName from '../src/js/util/getComponentName';
 import getComponentPropNames from '../src/js/util/getComponentPropNames';
@@ -27,38 +27,32 @@ function tearDownSpy() {
   console.log.restore();
 }
 
-
-
-test.skip('test main - no arg - log error msg', async t => {
+test('test main - no arg - log error msg', (t) => {
   setupSpy();
-  await main();
-  await t.true(console.log.calledOnceWith('\x1b[1m\x1b[31mA path is required.  It can be a file or a directory.\x1b[0m\n'));
+  main();
+  t.true(console.log.calledOnceWith('\x1b[1m\x1b[31mA path is required.  It can be a file or a directory.\x1b[0m\n'));
   tearDownSpy();
 });
 
-test('test main - arg', async t => {
-  setupSpy();
-  await main('./test/mock_files/fake_in_order.vue');
-  await t.true(console.log.calledOnceWith([`\x1b[1m\x1b[32mThe \x1b[4mfake\x1b[0m\x1b[1m\x1b[32m component's options are already in the recommended order.\x1b[0m\n`]));
-  tearDownSpy();
-});
-
-test('test lint - with file, opts in order', async t => {
+test('test lint - with file, opts in order', async (t) => {
   await t.is(await lint('./test/mock_files/fake_in_order.vue'),
-    `\x1b[1m\x1b[32mThe \x1b[4mfake\x1b[0m\x1b[1m\x1b[32m component's options are already in the recommended order.\x1b[0m\n`);
+    "\x1b[1m\x1b[32mThe \x1b[4mfake\x1b[0m\x1b[1m\x1b[32m component's options are already in the recommended order.\x1b[0m\n");
 });
 
-test('test lint - with file, opts not in order', async t => {
+test('test lint - with file, opts not in order', async (t) => {
   await t.is(await lint('./test/mock_files/fake_not_in_order.vue'),
-    `\x1b[1m\x1b[31mThe recommended order for the \x1b[4mfake\x1b[0m\x1b[1m\x1b[31m component's options is: \x1b[7mname, extends, mixins, props, mounted.\x1b[0m\n`);
+    "\x1b[1m\x1b[31mThe recommended order for the \x1b[4mfake\x1b[0m\x1b[1m\x1b[31m component's options is: \x1b[7mname, extends, mixins, props, mounted.\x1b[0m\n");
 });
 
-test('test lint - with directory', async t => {
+test('test lint - with directory', async (t) => {
   await t.deepEqual(await lint('./test/mock_files/'),
-    [`\x1b[1m\x1b[32mThe \x1b[4mfake\x1b[0m\x1b[1m\x1b[32m component's options are already in the recommended order.\x1b[0m\n`, `\x1b[1m\x1b[31mThe recommended order for the \x1b[4mfake\x1b[0m\x1b[1m\x1b[31m component's options is: \x1b[7mname, extends, mixins, props, mounted.\x1b[0m\n`]);
+    ["\x1b[1m\x1b[32mThe \x1b[4mfake\x1b[0m\x1b[1m\x1b[32m component's options are already in the recommended order.\x1b[0m\n", "\x1b[1m\x1b[31mThe recommended order for the \x1b[4mfake\x1b[0m\x1b[1m\x1b[31m component's options is: \x1b[7mname, extends, mixins, props, mounted.\x1b[0m\n"]);
 });
 
-
+test('test lintFile - bad file path arg - log error msg', async (t) => {
+  await t.is(await lintFile('./test/mock_files/junk_filename.vue'),
+    '\x1b[1m\x1b[31mFile or directory not found.  Please supply a valid path.\x1b[0m\n');
+});
 
 test('test getComponentOptionsOrder - no name and empty props', (t) => {
   const obj = { componentName: '', componentProps: [] };
@@ -78,8 +72,18 @@ test('test getComponentOptionsOrder - name with props in wrong order', (t) => {
     "\x1b[1m\x1b[31mThe recommended order for the \x1b[4mheader\x1b[0m\x1b[1m\x1b[31m component's options is: \x1b[7mname, props, methods.\x1b[0m\n");
 });
 
-// getProperOrder and prettifyArray seem adequately
-// tested via getComponentOptionsOrder despite what nyc says
+test('test getComponentOptionsOrder - no arg', (t) => {
+  t.is(getComponentOptionsOrder(),
+    "\x1b[1m\x1b[32mThe \x1b[4m\x1b[0m\x1b[1m\x1b[32m component's options are already in the recommended order.\x1b[0m\n");
+});
+
+test('test prettifyArray - no arg', (t) => {
+  t.deepEqual(prettifyArray(), []);
+});
+
+test('test getProperOrder - no arg', (t) => {
+  t.deepEqual(getProperOrder(), []);
+});
 
 test('test errorHandler - proper return on ENOENT', (t) => {
   const str = 'ENOENT';
@@ -200,21 +204,21 @@ test('test removeBuggyKeywords', (t) => {
   t.is(removeBuggyKeywords(str), 'hello world');
 });
 
-test.skip('test resultReporter - no arg - log newline', (t) => {
+test('test resultReporter - no arg - log newline', (t) => {
   setupSpy();
   resultReporter();
   t.true(console.log.calledOnceWith('\n'));
   tearDownSpy();
 });
 
-test.skip('test resultReporter - str arg - log newline + str', (t) => {
+test('test resultReporter - str arg - log newline + str', (t) => {
   setupSpy();
   resultReporter('hello');
   t.true(console.log.calledOnceWith('\nhello'));
   tearDownSpy();
 });
 
-test.skip('test resultReporter - arr arg - console.log called arr.length + 1(newline) times', (t) => {
+test('test resultReporter - arr arg - console.log called arr.length + 1(newline) times', (t) => {
   setupSpy();
   const arr = ['once\n', 'there\n', 'was\n'];
   resultReporter(arr);
@@ -222,7 +226,7 @@ test.skip('test resultReporter - arr arg - console.log called arr.length + 1(new
   tearDownSpy();
 });
 
-test.skip('test resultReporter - arr arg - log newline + each element', (t) => {
+test('test resultReporter - arr arg - log newline + each element', (t) => {
   setupSpy();
   const arr = ['once\n', 'there\n', 'was\n'];
   resultReporter(arr);
