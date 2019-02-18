@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint ./cli.js ./src ./test",
-    "test": "nyc ava \"test/test.js\" --verbose && nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc ava \"test/test.js\" --verbose && nyc report --reporter=text-lcov | coveralls --verbose"
   },
   "engines": {
     "node": ">=10.0.0"
