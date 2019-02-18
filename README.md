@@ -2,6 +2,8 @@
   <img width="76" height="76" src="https://github.com/jamessouth/Vue-Project-9/blob/4b01f8aa09f745bdd11c5d6360ed2a7b22fb828e/docs/img/icons/apple-touch-icon-76x76.png">
 </div>
 
+[![Build Status](https://travis-ci.com/jamessouth/vue-style-lint.svg?branch=master)](https://travis-ci.com/jamessouth/vue-style-lint)
+
 # vue-style-lint
 
 A cli style-linter for Vue using the rules and recommendations in the [Vue Style Guide](https://vuejs.org/v2/style-guide/).  Right now it only checks the order of a component's options as outlined in `Priority C Rules: Recommended - Component/instance options order`.  Each file must be a [single-file component](https://vuejs.org/v2/guide/single-file-components.html) and the element order must be `<template>` - `<script>` - `<style>`.  If a component has no template of its own, `<script>` - `<style>` will also work.
