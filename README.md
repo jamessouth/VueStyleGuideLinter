@@ -1,13 +1,12 @@
-<div align="center">
-  <img width="76" height="76" src="https://github.com/jamessouth/Vue-Project-9/blob/4b01f8aa09f745bdd11c5d6360ed2a7b22fb828e/docs/img/icons/apple-touch-icon-76x76.png">
-</div>
+# vue-style-lint
 
 [![Build Status](https://travis-ci.com/jamessouth/vue-style-lint.svg?branch=master)](https://travis-ci.com/jamessouth/vue-style-lint)
 [![Coverage Status](https://coveralls.io/repos/github/jamessouth/vue-style-lint/badge.svg?branch=master)](https://coveralls.io/github/jamessouth/vue-style-lint?branch=master)
+![npm](https://img.shields.io/npm/v/vue-style-lint.svg?logo=npm)
+![node](https://img.shields.io/node/v/vue-style-lint.svg?logo=Node.js)
+![](https://img.shields.io/badge/awesome-yes-brightgreen.svg)
 
-# vue-style-lint
-
-A cli style-linter for Vue using the rules and recommendations in the [Vue Style Guide](https://vuejs.org/v2/style-guide/).  Right now it only checks the order of a component's options as outlined in `Priority C Rules: Recommended - Component/instance options order`.  Each file must be a [single-file component](https://vuejs.org/v2/guide/single-file-components.html) and the element order must be `<template>` - `<script>` - `<style>`.  If a component has no template of its own, `<script>` - `<style>` will also work.
+A cli style-linter for Vue using the rules and recommendations in the [![](https://img.shields.io/badge/Style-Guide-brightgreen.svg?logo=Vue.js&colorA=grey&colorB=grey)](https://vuejs.org/v2/style-guide/).  Right now it only checks the order of a component's options as outlined in `Priority C Rules: Recommended - Component/instance options order`.  Each file must be a [single-file component](https://vuejs.org/v2/guide/single-file-components.html) and the element order must be `<template>` - `<script>` - `<style>`.  If a component has no template of its own, `<script>` - `<style>` will also work.
 
 ## Install
 
@@ -25,7 +24,7 @@ npm i -D vue-style-lint
 
 ## Usage
 
-If you install globally, the `vsl` command is ready to go.  It takes one argument, a single-file component (`.vue` file) or a folder of them:
+If you install globally, the `vsl` command is ready to go.  It takes one argument: a single-file component (`.vue` file) or a folder of them:
 
 <pre>vsl <i>your file/folder, relative to where you are entering the command</i></pre>
 
@@ -49,9 +48,9 @@ You would then run:
 
 ## Output
 
-A message logged to the console:
-* the component's options are already in order, or
-* if not in order, the recommended order, or
+One of the following messages logged to the console:
+* the component's options are already in order
+* the recommended order
 * an error message
 
 ## Author/Maintainer
