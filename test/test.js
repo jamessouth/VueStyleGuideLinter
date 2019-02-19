@@ -7,6 +7,7 @@ import cli from '../cli';
 import index from '../src/js/index';
 import main from '../src/js/main';
 import lint from '../src/js/lint';
+import lintDirectory from '../src/js/lintDirectory';
 import lintFile from '../src/js/lintFile';
 import getComponentOptionsOrder from '../src/Priority_C/Comp_inst_opts_order/getComponentOptionsOrder';
 import prettifyArray from '../src/Priority_C/Comp_inst_opts_order/prettifyArray';
@@ -47,6 +48,16 @@ test('test lint - with file, opts not in order', async (t) => {
 test('test lint - with directory', async (t) => {
   await t.deepEqual(await lint('./test/mock_files/'),
     ["\x1b[1m\x1b[32mThe \x1b[4mfake\x1b[0m\x1b[1m\x1b[32m component's options are already in the recommended order.\x1b[0m\n", "\x1b[1m\x1b[31mThe recommended order for the \x1b[4mfake\x1b[0m\x1b[1m\x1b[31m component's options is: \x1b[7mname, extends, mixins, props, mounted.\x1b[0m\n"]);
+});
+
+test('test lint - bad file path arg - log error msg', async (t) => {
+  await t.is(await lint('./test/mock_files/junk_filename.vue'),
+    '\x1b[1m\x1b[31mFile or directory not found.  Please supply a valid path.\x1b[0m\n');
+});
+
+test('test lintDirectory - bad directory path arg - log error msg', async (t) => {
+  await t.is(await lintDirectory('./fake'),
+    '\x1b[1m\x1b[31mFile or directory not found.  Please supply a valid path.\x1b[0m\n');
 });
 
 test('test lintFile - bad file path arg - log error msg', async (t) => {
@@ -92,13 +103,13 @@ test('test errorHandler - proper return on ENOENT', (t) => {
 
 test('test errorHandler - proper return on other than ENOENT - default type', (t) => {
   const str = 'hello';
-  t.is(errorHandler(str), '\x1b[1m\x1b[31mThere was an error with this component: hello.\x1b[0m\n');
+  t.is(errorHandler(str), 'There was an \x1b[7merror\x1b[0m with this component: hello.\n');
 });
 
 test('test errorHandler - proper return on other than ENOENT - supplied type', (t) => {
   const str = 'hello';
   const type = 'directory';
-  t.is(errorHandler(str, type), '\x1b[1m\x1b[31mThere was an error with this directory: hello.\x1b[0m\n');
+  t.is(errorHandler(str, type), 'There was an \x1b[7merror\x1b[0m with this directory: hello.\n');
 });
 
 test('test getComponentName - deepEqual', (t) => {
