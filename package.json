@@ -1,6 +1,6 @@
 {
   "name": "vue-style-lint",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Vue single-file component cli style-linter using the Vue Style Guide",
   "main": "./src/js/index.js",
   "module": "./src/js/main.js",
