@@ -120,6 +120,13 @@ test('test getComponentName - deepEqual', (t) => {
   t.deepEqual(getComponentName(arr), { componentName: 'header', componentProps: arr });
 });
 
+test('test getComponentName - no name', (t) => {
+  const arr = [
+    { key: { name: 'props' }, value: { value: ['height', 'width'] } },
+  ];
+  t.deepEqual(getComponentName(arr), { componentName: '<-    NO NAME FOUND    ->', componentProps: arr });
+});
+
 test('test getComponentName - is with JSON.stringify', (t) => {
   const arr = [
     { key: { name: 'name' }, value: { value: 'header' } },

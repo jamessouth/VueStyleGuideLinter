@@ -7,3 +7,4 @@ install:
 cache:
   directories:
   - "$HOME/.npm"
+script: npm run test:cover

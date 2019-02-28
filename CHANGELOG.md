@@ -1,5 +1,10 @@
 # vue-style-lint changelog
 
+## 1.0.3
+
+* add router navigation guards to options order
+* fix getComponentName to catch components that have no name property
+
 ## 1.0.2
 
 * revise README to remove Vue logo, add badges
