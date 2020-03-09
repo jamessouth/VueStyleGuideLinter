@@ -6,6 +6,10 @@
 ![node](https://img.shields.io/node/v/vue-style-lint.svg?logo=Node.js)
 ![](https://img.shields.io/badge/awesome-yes-brightgreen.svg)
 
+
+NOTE:  I missed, prior to developing and publishing this package, that Vue had released an [ESLint plugin](https://eslint.vuejs.org/) that does the same thing.  The Style Guide still has no link to the plugin; see [this issue](https://github.com/vuejs/vuejs.org/issues/1463#issuecomment-468433362).  While it was a learning opportunity, I don't think there's any reason to continue working on this project.
+
+
 A cli style-linter for Vue using the rules and recommendations in the [Vue Style Guide](https://vuejs.org/v2/style-guide/).  Right now it only checks the order of a component's options as outlined in `Priority C Rules: Recommended - Component/instance options order`.  Each file must be a [single-file component](https://vuejs.org/v2/guide/single-file-components.html) and the element order must be `<template>` - `<script>` - `<style>`.  If a component has no template of its own, `<script>` - `<style>` will also work.
 
 ## Install
@@ -35,7 +39,7 @@ If you install locally, you will need something like globally-installed `npx` to
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 Alternatively, you can run the `vsl` command from your `package.json` `scripts` object:
- 
+
 <pre>
 "scripts": {
     "lint:style": "vsl <i>your file/folder, relative to your project's root"</i>
